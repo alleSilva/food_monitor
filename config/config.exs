@@ -10,6 +10,10 @@ use Mix.Config
 config :food_monitor,
   ecto_repos: [FoodMonitor.Repo]
 
+config :food_monitor,FoodMonitor.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+
 # Configures the endpoint
 config :food_monitor, FoodMonitorWeb.Endpoint,
   url: [host: "localhost"],
