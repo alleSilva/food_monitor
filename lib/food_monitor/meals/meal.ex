@@ -2,7 +2,7 @@ defmodule FoodMonitor.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @primary_id {:id, :binary_id, autogenerate: true}
+  @primary_key {:id, :binary_id, autogenerate: true}
   @required_params [:description, :date, :calories]
 
   schema "meals" do
