@@ -1,9 +1,11 @@
-defmodule FoodMonitor.Users.User do
+defmodule FoodMonitor.Meals.Meal do
   use Ecto.Schema
   import Ecto.Changeset
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @required_params [:description, :date, :calories]
+
+  @derive {Jason.Encoder, only: [:description, :date, :calories]}
 
   schema "meals" do
     field :description, :string
