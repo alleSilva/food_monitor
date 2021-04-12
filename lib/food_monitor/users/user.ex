@@ -18,18 +18,21 @@ defmodule FoodMonitor.Users.User do
     timestamps()
   end
 
-  def changeset(params) do
-    %__MODULE__{}
+  def changeset(struct \\ %__MODULE__{}, params) do
+    struct
     |> cast(params, @required_params)
     |> validate_required(@required_params)
     |> validate_number(:age, greater_than_or_equal_to: 18)
     |> validate_length(:password, min: 6)
     |> unique_constraint([:email])
-    |> put_password_hash()                        end
-                                                  defp put_password_hash(%Changeset{valid?: true, changes: %{password: password}} = changeset) do
-                                                    change(changeset, Pbkdf2.add_hash(password))
+    |> put_password_hash()
   end
+
+  defp put_password_hash(
+    %Changeset{
+      valid?: true,
+      changes: %{password: password}
+    } = changeset), do: change(changeset, Pbkdf2.add_hash(password))
+
   defp put_password_hash(changeset), do: changeset
 end
-
-
