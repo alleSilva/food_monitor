@@ -4,7 +4,7 @@ defmodule FoodMonitor.Users.Delete do
   alias FoodMonitor.Users.User
   alias FoodMonitor.Repo
 
-  def by_id(id) do
+  def call(id) do
     case UUID.cast(id) do
       {:ok, uuid} -> get_user(uuid)
       :error -> {:error, Error.build_id_format_error()}

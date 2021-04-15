@@ -7,6 +7,8 @@ defmodule FoodMonitorWeb.Router do
 
   scope "/api", FoodMonitorWeb do
     pipe_through :api
+
+    resources "/users", UsersControllers, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development

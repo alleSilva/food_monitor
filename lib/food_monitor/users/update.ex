@@ -21,6 +21,6 @@ defmodule FoodMonitor.Users.Update do
   defp do_update(user, params) do
     user
     |> User.changeset(params)
-    |> Repo.insert()
+    |> Repo.update()
   end
 end

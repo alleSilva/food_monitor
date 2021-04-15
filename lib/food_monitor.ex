@@ -1,9 +1,19 @@
 defmodule FoodMonitor do
-  @moduledoc """
-  FoodMonitor keeps the contexts that define your domain
-  and business logic.
+  alias FoodMonitor.Users
+  alias Users.Create, as: CreateUser
+  alias Users.Get, as: GetUser
+  alias Users.Delete, as: DeleteUser
+  alias Users.Update, as: UpdateUser
+  
+  defdelegate create_user(params), 
+    to: CreateUser, as: :call
 
-  Contexts are also responsible for managing your data, regardless
-  if it comes from the database, an external API or others.
-  """
+  defdelegate get_user_by_id(id), 
+    to: GetUser, as: :by_id
+
+  defdelegate delete_user(id),
+    to: DeleteUser, as: :call
+
+  defdelegate update_user(params),
+    to: UpdateUser, as: :call
 end

@@ -3,9 +3,9 @@ defmodule FoodMonitor.Repo.Migrations.CreateUsersTable do
 
   def change do
     create table :users do
-      add :name, :string
       add :age, :integer
       add :email, :string
+      add :name, :string
       add :password_hash, :string
 
       timestamps()
