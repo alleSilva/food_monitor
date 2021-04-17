@@ -11,7 +11,7 @@ defmodule FoodMonitorWeb.ErrorView do
      %{message: translate_errors(changeset)}
     end
 
-    #def render("400.json", result), do: %{message: result}
+    def render("error.json", %{result: result}), do: %{message: result}
 
     defp translate_errors(changeset) do
      traverse_errors(changeset, fn {msg, opts} ->

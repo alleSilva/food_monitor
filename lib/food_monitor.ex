@@ -1,4 +1,10 @@
 defmodule FoodMonitor do
+  alias FoodMonitor.Meals
+  alias Meals.Create, as: CreateMeal
+  alias Meals.Get, as: GetMeal
+  alias Meals.Delete, as: DeleteMeal
+  alias Meals.Update, as: UpdateMeal
+
   alias FoodMonitor.Users
   alias Users.Create, as: CreateUser
   alias Users.Get, as: GetUser
@@ -16,4 +22,15 @@ defmodule FoodMonitor do
 
   defdelegate update_user(params),
     to: UpdateUser, as: :call
+
+  defdelegate create_meal(params),
+    to: CreateMeal, as: :call                   
+  defdelegate get_meal_by_id(id),
+    to: GetMeal, as: :by_id
+
+  defdelegate delete_meal(id),
+    to: DeleteMeal, as: :call
+
+  defdelegate update_meal(params),
+    to: UpdateMeal, as: :call
 end
