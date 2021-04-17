@@ -5,11 +5,11 @@ defmodule FoodMonitor.Meals.Meal do
   @primary_key {:id, :binary_id, autogenerate: true}
   @required_params [:description, :date, :calories]
 
-  @derive {Jason.Encoder, only: [:description, :date, :calories]}
+  @derive {Jason.Encoder, only: [:id, :description, :date, :calories]}
 
   schema "meals" do
     field :description, :string
-    field :date, :naive_datetime
+    field :date, :naive_datetime, default: NaiveDateTime.local_now()
     field :calories, :decimal
 
     timestamps()
