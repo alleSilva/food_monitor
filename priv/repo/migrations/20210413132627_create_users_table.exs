@@ -3,8 +3,8 @@ defmodule FoodMonitor.Repo.Migrations.CreateUsersTable do
 
   def change do
     create table :users do
-      add :age, :integer
       add :email, :string
+      add :cpf, :string
       add :name, :string
       add :password_hash, :string
 
@@ -12,5 +12,6 @@ defmodule FoodMonitor.Repo.Migrations.CreateUsersTable do
     end
 
     create unique_index(:users, [:email])
+    create unique_index(:users, [:cpf])
   end
 end

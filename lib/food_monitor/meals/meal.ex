@@ -25,5 +25,6 @@ defmodule FoodMonitor.Meals.Meal do
     |> cast(params, @required_params)
     |> validate_required(@required_params)
     |> validate_length(:description, min: 3)
+    |> validate_number(:calories, greater_than: 0)
   end
 end

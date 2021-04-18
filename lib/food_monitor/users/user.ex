@@ -5,13 +5,13 @@ defmodule FoodMonitor.Users.User do
   alias FoodMonitor.Meals.Meal
 
   @primary_key {:id, :binary_id, autogenerate: true}
-  @required_params [:name, :age, :email, :password]
+  @required_params [:name, :cpf, :email]
 
-  @derive {Jason.Encoder, only: [:name, :age, :email]}
+  @derive {Jason.Encoder, only: [:name, :cpf, :email]}
 
   schema "users" do
     field :name, :string
-    field :age, :integer
+    field :cpf, :string
     field :email, :string
     field :password, :string, virtual: true
     field :password_hash, :string
@@ -25,9 +25,11 @@ defmodule FoodMonitor.Users.User do
     struct
     |> cast(params, @required_params)
     |> validate_required(@required_params)
-    |> validate_number(:age, greater_than_or_equal_to: 18)
+    |> validate_length(:cpf, is: 11)
     |> validate_length(:password, min: 6)
+    |> validate_format(:email, ~r/\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i)
     |> unique_constraint([:email])
+    |> unique_constraint([:cpf])
     |> put_password_hash()
   end
 
