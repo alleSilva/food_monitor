@@ -2,6 +2,7 @@ defmodule FoodMonitor.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias Ecto.Changeset
+  alias FoodMonitor.Meals.Meal
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @required_params [:name, :age, :email, :password]
@@ -14,6 +15,8 @@ defmodule FoodMonitor.Users.User do
     field :email, :string
     field :password, :string, virtual: true
     field :password_hash, :string
+
+    has_many :meals, Meal
 
     timestamps()
   end
